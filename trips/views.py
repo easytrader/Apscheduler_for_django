@@ -8,7 +8,8 @@ import time
 import os
 
 from apscheduler.schedulers.background import BackgroundScheduler
-
+scheduler = BackgroundScheduler()
+scheduler.start()
 
 def test_1():
     print("test1")
@@ -20,18 +21,42 @@ def test_2():
 
 # Create your views here.
 def hello_world(request):
+    #scheduler = BackgroundScheduler()
+    running_jobs = scheduler.get_jobs()
+    print("leo test scheduler.get_jobs()")
+    #print("len(running_jobs)")
+    #print(len(running_jobs))
+    print("running_jobs")
+    print(running_jobs)
+    s_running_jobs = []
+    re_running_jobs = []
+    if len(running_jobs)>=2:
+        """
+        print("running_jobs[0]")
+        print(running_jobs[0].name)
+        print(running_jobs[0].next_run_time)
+        print("running_jobs[1]")
+        print(running_jobs[1].name)
+        print(running_jobs[1].next_run_time)
+        """
+        for running_job in running_jobs:
+            print(running_job)
+            re_running_jobs.append([running_job.name,running_job.next_run_time])
+        print("re_running_job")
+        print(re_running_jobs)
+
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
 
 def test1(request):
     print("test1 ")
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(test_1, 'interval', seconds=3)
-    scheduler.start()
+    #scheduler = BackgroundScheduler()
+    scheduler.add_job(test_1, 'interval',id='my_test_job1', seconds=3)
+    #scheduler.start()
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
 
 def test2(request):
     print("test2 ")
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(test_2, 'interval', seconds=3)
-    scheduler.start()
+    #scheduler = BackgroundScheduler()
+    scheduler.add_job(test_2, 'interval',id='my_test_job2', seconds=3)
+    #scheduler.start()
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))

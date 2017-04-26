@@ -8,5 +8,12 @@
 <input type="button" onclick="location.href = '/test1';" value="APScheduler1"></input>
 
 <input type="button" onclick="location.href = '/test2';" value="APScheduler2"></input>
+
+{% for running_job in re_running_jobs %}
+{% for job in running_job %}
+{{job}}
+{% endfor %}
+{% endfor %}
+
 </body>
 </html>
