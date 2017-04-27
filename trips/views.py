@@ -71,6 +71,7 @@ def test2(request):
 def test3(request):
     print("test3 ")
     #scheduler = BackgroundScheduler()
-    scheduler.add_job(test_3, 'cron',id='my_test_job3', day_of_week='0-5', hour=16, minute=28)
+    scheduler.add_job(test_3, 'cron',id='my_test_job3', day_of_week='0-5', hour='17', minute='21')
+    #scheduler.add_job(test_2, 'cron', id='my_test_job3', day_of_week='0-5', hour='17', minute='19')
     #scheduler.start()
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
