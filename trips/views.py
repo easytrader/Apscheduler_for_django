@@ -19,6 +19,10 @@ def test_2():
     print("test2")
     print('Tick! The time is: %s' % datetime.now())
 
+def test_3():
+    print("test3")
+    print('Tick! The time is: %s' % datetime.now())
+
 # Create your views here.
 def hello_world(request):
     #scheduler = BackgroundScheduler()
@@ -61,5 +65,12 @@ def test2(request):
     print("test2 ")
     #scheduler = BackgroundScheduler()
     scheduler.add_job(test_2, 'interval',id='my_test_job2', seconds=3)
+    #scheduler.start()
+    return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
+
+def test3(request):
+    print("test3 ")
+    #scheduler = BackgroundScheduler()
+    scheduler.add_job(test_3, 'cron',id='my_test_job3', day_of_week='0-5', hour=16, minute=28)
     #scheduler.start()
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
