@@ -26,12 +26,14 @@ def hello_world(request):
     print("leo test scheduler.get_jobs()")
     #print("len(running_jobs)")
     #print(len(running_jobs))
-    print("running_jobs")
-    print(running_jobs)
+    #print("running_jobs")
+    #print(running_jobs)
     s_running_jobs = []
     re_running_jobs = []
+    #re_running_jobs = [['a','b'],['c','d']]
+
     if len(running_jobs)>=2:
-        """
+        """    
         print("running_jobs[0]")
         print(running_jobs[0].name)
         print(running_jobs[0].next_run_time)
@@ -40,12 +42,13 @@ def hello_world(request):
         print(running_jobs[1].next_run_time)
         """
         for running_job in running_jobs:
-            print(running_job)
+            #print(running_job.name)
+            #print(running_job.next_run_time)
             re_running_jobs.append([running_job.name,running_job.next_run_time])
-        print("re_running_job")
-        print(re_running_jobs)
+        #print("re_running_job")
+        #print(re_running_jobs)
 
-    return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
+    return render_to_response('hello_world.html',{"running_jobs": running_jobs},context_instance = RequestContext(request))
 
 def test1(request):
     print("test1 ")

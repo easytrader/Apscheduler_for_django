@@ -9,11 +9,26 @@
 
 <input type="button" onclick="location.href = '/test2';" value="APScheduler2"></input>
 
-{% for running_job in re_running_jobs %}
-{% for job in running_job %}
-{{job}}
+<br/>
+<br/>
+
+<table width="300" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Next time</th>
+  </tr>
+{% for running_job in running_jobs %}
+
+
+  <tr>
+    <td>{{running_job.name}}</td>
+    <td>{{running_job.next_run_time}}</td>
+  </tr>
+
+
 {% endfor %}
-{% endfor %}
+
+</table>
 
 </body>
 </html>
