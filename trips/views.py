@@ -2,10 +2,12 @@ from django.shortcuts import render,render_to_response
 from django.template import RequestContext
 import sys
 import os
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse,Http404
 from datetime import datetime
 import time
 import os
+import json
 
 from apscheduler.schedulers.background import BackgroundScheduler
 scheduler = BackgroundScheduler()
@@ -75,3 +77,18 @@ def test3(request):
     #scheduler.add_job(test_2, 'cron', id='my_test_job3', day_of_week='0-5', hour='17', minute='19')
     #scheduler.start()
     return render_to_response('hello_world.html',{},context_instance = RequestContext(request))
+
+@csrf_exempt
+def aps_del(request):
+    #print("leo test in aps del")
+
+    if request.is_ajax():
+        print("leo test in aps del")
+        if request.POST.get('job-id') is not None:
+            #print("job del:"+request.POST.get('job-id'))
+            jobid = request.POST.get('job-id')
+            scheduler.remove_job(jobid)
+
+        return HttpResponse(json.dumps({'name': ""}), content_type="application/json")
+    else:
+        raise Http404

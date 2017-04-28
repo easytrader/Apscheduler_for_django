@@ -1,5 +1,11 @@
+{% load staticfiles %}
+
 <!doctype html>
 <html lang="en">
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src= "{% static 'js/button.js' %}" type="text/javascript" charset="utf-8"></script>
+
 <body>
 <h3>Hello World</h3>
 
@@ -11,6 +17,8 @@
 
 <input type="button" onclick="location.href = '/test3';" value="APScheduler3"></input>
 
+
+
 <br/>
 <br/>
 {{today}}
@@ -19,14 +27,18 @@
 <table width="300" border="1">
   <tr>
     <th>Name</th>
+    <th>id</th>
     <th>Next time</th>
+    <th>Disable</th>
   </tr>
 {% for running_job in running_jobs %}
 
 
   <tr>
     <td>{{running_job.name}}</td>
+    <td>{{running_job.id}}</td>
     <td>{{running_job.next_run_time}}</td>
+    <td><input type="button" value="Del APS" class="del-aps" id="{{running_job.id}}"></td>
   </tr>
 
 
