@@ -7,4 +7,7 @@ import logging
 logging.basicConfig(filename='/tmp/log', level=logging.DEBUG,
         format='[%(asctime)s]: %(levelname)s : %(message)s')
 ```
+```
+tail -f '/tmp/log'
+```
 ![alt tag](https://github.com/easytrader/Apscheduler_for_django/blob/master/APscheduler.png)
