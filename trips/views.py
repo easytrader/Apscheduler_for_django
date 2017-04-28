@@ -51,8 +51,8 @@ def hello_world(request):
             re_running_jobs.append([running_job.name,running_job.next_run_time])
         #print("re_running_job")
         #print(re_running_jobs)
-
-    return render_to_response('hello_world.html',{"running_jobs": running_jobs},context_instance = RequestContext(request))
+    today = datetime.now()
+    return render_to_response('hello_world.html',{"running_jobs": running_jobs,"today":today},context_instance = RequestContext(request))
 
 def test1(request):
     print("test1 ")
